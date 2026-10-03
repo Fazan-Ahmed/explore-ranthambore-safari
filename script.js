@@ -11,7 +11,7 @@ const SITE_CONFIG = {
 /* EMAILJS: create a free EmailJS account, then replace the three values below.
    Set the receiving email inside the EmailJS template (not here). Never put private keys here — only the PUBLIC key.
    Template variables used: name, mobile, date, guests, type, shift. */
-const EMAILJS = { serviceId: "EMAILJS_SERVICE_ID", templateId: "EMAILJS_TEMPLATE_ID", publicKey: "EMAILJS_PUBLIC_KEY" };
+const EMAILJS = { serviceId: "service_j7eskfh", templateId: "template_w6ebk2b", publicKey: "z3fhOAPPiiDGlRKJD" };
 /* HOTEL LAUNCH CONTROL
    Change to "LIVE" only after verified hotel information is added.
    While using placeholder/sample hotel content, do not use the hotel pages as Google Ads landing pages. */
