@@ -572,3 +572,19 @@ select {
 .btn-pkg-outline:hover {
   background: rgba(29, 74, 49, .1)
 }
+
+ /* logo  */
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px
+}
+
+.brand img {
+  width: 48px;
+  height: 48px;
+  display: block;
+  background: transparent;
+  clip-path: circle(45%)
+}
