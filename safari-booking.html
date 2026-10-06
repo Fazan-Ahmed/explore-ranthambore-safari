@@ -15,11 +15,11 @@
   <meta property="og:description"
     content="Plan your Ranthambore safari with independent booking assistance for Gypsy and Canter safaris. Share your travel details and enquire by WhatsApp or phone.">
   <meta property="og:url" content="https://exploreranthamboresafari.in/safari-booking.html">
-<meta property="og:image" content="https://exploreranthamboresafari.in/images/og-image.jpg">
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="Explore Ranthambore Safari - independent safari booking assistance">
-<meta name="twitter:card" content="summary_large_image">
+  <meta property="og:image" content="https://exploreranthamboresafari.in/images/og-image.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Explore Ranthambore Safari - independent safari booking assistance">
+  <meta name="twitter:card" content="summary_large_image">
 
   <link rel="icon" href="/images/favicon.png">
   <link rel="stylesheet" href="/style.css">
@@ -44,7 +44,7 @@
         <a href="/safari-booking.html">Safari Booking</a>
         <a href="/about.html">About</a>
         <a href="/safari-booking.html#enquiry">Contact</a>
-        <a class="btn btn-a" href="/safari-booking.html#enquiry"> Send Safari Enquiry</a>
+        <a class="btn btn-a" href="/safari-booking.html#enquiry">Send Safari Enquiry</a>
       </nav>
     </div>
   </header>
@@ -57,7 +57,7 @@
         <p>Plan your Ranthambore safari with independent booking assistance. Enquire about available Gypsy and Canter
           safari options for your preferred date and travel plans.</p>
         <div class="cta">
-          <a class="btn btn-a" href="#enquiry">Send Safari Enquiry </a>
+          <a class="btn btn-a" href="#enquiry">Send Safari Enquiry</a>
           <a class="btn btn-l" data-wa href="https://wa.me/message/SUCM2DBCG7WPD1" target="_blank"
             rel="noopener">WhatsApp Us</a>
           <a class="btn btn-l" data-tel="primary" href="tel:8619152322">Call Now</a>
@@ -102,7 +102,7 @@
               <li>Wildlife viewing experience (no sighting is guaranteed)</li>
             </ul>
 
-            <a class="btn btn-pkg btn-pkg-outline" href="#enquiry">Send Gypsy Safari Enquiry </a>
+            <a class="btn btn-pkg btn-pkg-outline" href="#enquiry">Send Gypsy Safari Enquiry</a>
           </article>
           <article class="pkg-card" id="canter">
             <div class="pkg-icon" aria-hidden="true">&#128652;</div>
@@ -131,6 +131,48 @@
           fee.</p>
       </div>
     </section>
+
+    <!-- ================= IMAGE GALLERY SECTION (START) ================= -->
+    <section class="sec">
+      <div class="wrap">
+        <h2>Ranthambore Safari Gallery</h2>
+        <div class="img-gal">
+
+          <!-- IMAGE 1 (FEATURED, big) | Size: 1200 x 800 px (3:2) -->
+          <figure class="img-main">
+            <img src="/images/ranthambore-tiger.webp" alt="Tiger in Ranthambore National Park" width="1200" height="800"
+              loading="lazy" decoding="async">
+          </figure>
+
+          <!-- IMAGE 2 | Size: 800 x 600 px (4:3) -->
+          <figure>
+            <img src="/images/gypsy-safari.webp" alt="Open Gypsy safari vehicle in Ranthambore" width="800" height="600"
+              loading="lazy" decoding="async">
+          </figure>
+
+          <!-- IMAGE 3 | Size: 800 x 600 px (4:3) -->
+          <figure>
+            <img src="/images/canter-safari.webp" alt="Open Canter safari vehicle in Ranthambore" width="800"
+              height="600" loading="lazy" decoding="async">
+          </figure>
+
+          <!-- IMAGE 4 | Size: 800 x 600 px (4:3) -->
+          <figure>
+            <img src="/images/ranthambore-fort.webp" alt="Ranthambore Fort inside the national park" width="800"
+              height="600" loading="lazy" decoding="async">
+          </figure>
+
+          <!-- IMAGE 5 | Size: 800 x 600 px (4:3) -->
+          <figure>
+            <img src="/images/ranthambore-wildlife.webp" alt="Two Bengal tigers facing each other in Ranthambore"
+              width="800" height="600" loading="lazy" decoding="async">
+          </figure>
+
+        </div>
+        <p class="muted">Images are for illustration. No wildlife sighting can be guaranteed.</p>
+      </div>
+    </section>
+    <!-- ================= IMAGE GALLERY SECTION (END) ================= -->
 
     <section class="sec alt">
       <div class="wrap">
@@ -237,6 +279,32 @@
           <p id="status" role="status" aria-live="polite"></p>
 
         </form>
+
+        <!-- Success message (enquiry send hone ke baad dikhega) -->
+        <div class="card" id="successMsg" role="status" aria-live="polite" tabindex="-1" hidden>
+          <h3 class="ok">&#10004; Enquiry Sent! &#127881;</h3>
+          <p>Thank you! Our team will contact you regarding your
+            <strong>Ranthambore Safari enquiry</strong> as soon as possible.</p>
+          <p class="muted">This is an enquiry and not a confirmed booking.</p>
+          <div class="cta">
+            <a class="btn btn-a" data-wa href="https://wa.me/message/SUCM2DBCG7WPD1" target="_blank"
+              rel="noopener">Chat on WhatsApp</a>
+            <button class="btn btn-l dk" type="button" id="again">Send Another Enquiry</button>
+          </div>
+        </div>
+
+        <!-- Error message (email send na ho to dikhega) -->
+        <div class="card" id="errorMsg" role="alert" aria-live="assertive" tabindex="-1" hidden>
+          <h3 class="bad">&#10006; Your enquiry could not be sent</h3>
+          <p>Sorry, your enquiry was <strong>not sent</strong> because of a technical problem.
+            Please try again, or contact us directly on WhatsApp or phone.</p>
+          <div class="cta">
+            <a class="btn btn-a" data-wa href="https://wa.me/message/SUCM2DBCG7WPD1" target="_blank"
+              rel="noopener">WhatsApp Us</a>
+            <a class="btn btn-l dk" data-tel="primary" href="tel:8619152322">Call Now</a>
+          </div>
+        </div>
+
       </div>
     </section>
 

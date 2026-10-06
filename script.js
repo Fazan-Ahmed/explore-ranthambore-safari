@@ -51,6 +51,25 @@ if (form) {
   const dt = $("#date"), today = new Date(); today.setMinutes(today.getMinutes() - today.getTimezoneOffset());
   dt.min = today.toISOString().slice(0,10);
   const status = $("#status");
+  const successMsg = $("#successMsg"), errorMsg = $("#errorMsg");
+  const submitBtn = form.querySelector('button[type="submit"]');
+
+  // Success / error cards (HTML mein hidden rehte hain)
+  const showCard = card => {
+    form.style.display = "none";
+    successMsg.hidden = true; errorMsg.hidden = true;
+    card.hidden = false;
+    card.focus();
+    card.scrollIntoView({ behavior: "smooth", block: "center" });
+  };
+  const showForm = () => {
+    successMsg.hidden = true; errorMsg.hidden = true;
+    form.style.display = "";
+    status.textContent = "";
+  };
+  const again = $("#again");
+  if (again) again.addEventListener("click", showForm);
+
   const val = () => {
     const v = Object.fromEntries(["name","mobile","date","guests","type","shift"].map(k => [k, form.elements[k].value.trim()]));
     const e = {};
@@ -65,17 +84,35 @@ if (form) {
   };
   const msg = v => `Hello, I want to enquire about a Ranthambore safari.\n\nName: ${v.name}\nSafari Date: ${v.date}\nGuests: ${v.guests}\nSafari Type: ${v.type}\nPreferred Shift: ${v.shift}\n\nWebsite: ${SITE_CONFIG.brandName}`;
   $("#wa-send").addEventListener("click", () => { const v = val(); if (v) open(waLink(msg(v)), "_blank", "noopener"); });
+
   form.addEventListener("submit", async ev => {
-    ev.preventDefault(); const v = val(); if (!v) { status.className = "bad"; status.textContent = "Please fix the highlighted fields."; return; }
+    ev.preventDefault();
+    const v = val();
+    if (!v) { status.className = "bad"; status.textContent = "Please fix the highlighted fields."; return; }
+
+    // EmailJS settings sahi nahi hain to bhi guest ko error card dikhao
     const ready = ![EMAILJS.serviceId, EMAILJS.templateId, EMAILJS.publicKey].some(x => x.startsWith("EMAILJS_"));
-    if (!ready) { status.className = "bad"; status.textContent = "Online enquiry is not available right now. Please use the WhatsApp button or call us."; return; }
+    if (!ready) { showCard(errorMsg); return; }
+
     status.className = ""; status.textContent = "Sending…";
+    if (submitBtn) submitBtn.disabled = true;
     try {
-      const r = await fetch("https://api.emailjs.com/api/v1.0/email/send", {method:"POST", headers:{"Content-Type":"application/json"},
-        body: JSON.stringify({service_id:EMAILJS.serviceId, template_id:EMAILJS.templateId, user_id:EMAILJS.publicKey, template_params:v})});
-      if (!r.ok) throw 0;
-      status.className = "ok"; status.textContent = "Enquiry sent. We will contact you. This is not a booking confirmation."; form.reset();
-    } catch { status.className = "bad"; status.textContent = "Could not send. Please use WhatsApp or call us."; }
+      const r = await fetch("https://api.emailjs.com/api/v1.0/email/send", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ service_id: EMAILJS.serviceId, template_id: EMAILJS.templateId, user_id: EMAILJS.publicKey, template_params: v })
+      });
+      if (!r.ok) throw new Error("EmailJS status " + r.status);
+      form.reset();
+      status.textContent = "";
+      showCard(successMsg);
+    } catch (err) {
+      console.error("Enquiry send failed:", err);
+      status.textContent = "";
+      showCard(errorMsg);
+    } finally {
+      if (submitBtn) submitBtn.disabled = false;
+    }
   });
 }
 
