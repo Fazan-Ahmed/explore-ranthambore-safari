@@ -15,13 +15,13 @@ const EMAILJS = { serviceId: "service_j7eskfh", templateId: "template_w6ebk2b", 
 /* HOTEL LAUNCH CONTROL
    Change to "LIVE" only after verified hotel information is added.
    While using placeholder/sample hotel content, do not use the hotel pages as Google Ads landing pages. */
-const HOTEL_MODE = "PLACEHOLDER";
+// const HOTEL_MODE = "PLACEHOLDER";
 /* HOTEL DATA: HOTEL PLACEHOLDER — replace each entry only after verified hotel information is available. */
-const HOTELS = [
-  {id:"sample-3star",name:"Partner Hotel – 3 Star (Placeholder)",stars:"3-Star Hotels",location:"Ranthambore / Sawai Madhopur (to be updated)",facilities:"To be updated after verification",short:"Sample Hotel Listing – Replace With Verified Hotel",overview:"Overview will be added after verified hotel information is available.",rooms:"Room information to be updated.",nearby:"Nearby information to be updated."},
-  {id:"sample-4star",name:"Partner Hotel – 4 Star (Placeholder)",stars:"4-Star Hotels",location:"Ranthambore / Sawai Madhopur (to be updated)",facilities:"To be updated after verification",short:"Sample Hotel Listing – Replace With Verified Hotel",overview:"Overview will be added after verified hotel information is available.",rooms:"Room information to be updated.",nearby:"Nearby information to be updated."},
-  {id:"sample-5star",name:"Partner Hotel – 5 Star (Placeholder)",stars:"5-Star Hotels",location:"Ranthambore / Sawai Madhopur (to be updated)",facilities:"To be updated after verification",short:"Sample Hotel Listing – Replace With Verified Hotel",overview:"Overview will be added after verified hotel information is available.",rooms:"Room information to be updated.",nearby:"Nearby information to be updated."}
-];
+// const HOTELS = [
+  // {id:"sample-3star",name:"Partner Hotel – 3 Star (Placeholder)",stars:"3-Star Hotels",location:"Ranthambore / Sawai Madhopur (to be updated)",facilities:"To be updated after verification",short:"Sample Hotel Listing – Replace With Verified Hotel",overview:"Overview will be added after verified hotel information is available.",rooms:"Room information to be updated.",nearby:"Nearby information to be updated."},
+  // {id:"sample-4star",name:"Partner Hotel – 4 Star (Placeholder)",stars:"4-Star Hotels",location:"Ranthambore / Sawai Madhopur (to be updated)",facilities:"To be updated after verification",short:"Sample Hotel Listing – Replace With Verified Hotel",overview:"Overview will be added after verified hotel information is available.",rooms:"Room information to be updated.",nearby:"Nearby information to be updated."},
+  // {id:"sample-5star",name:"Partner Hotel – 5 Star (Placeholder)",stars:"5-Star Hotels",location:"Ranthambore / Sawai Madhopur (to be updated)",facilities:"To be updated after verification",short:"Sample Hotel Listing – Replace With Verified Hotel",overview:"Overview will be added after verified hotel information is available.",rooms:"Room information to be updated.",nearby:"Nearby information to be updated."}
+// ];
 const $ = (s, r=document) => r.querySelector(s), $$ = (s, r=document) => [...r.querySelectorAll(s)];
 const esc = t => String(t).replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 const waLink = text => SITE_CONFIG.whatsappUrl + (text ? "?text=" + encodeURIComponent(text) : "");
@@ -70,18 +70,33 @@ if (form) {
   const again = $("#again");
   if (again) again.addEventListener("click", showForm);
 
+  // const val = () => {
+  //   const v = Object.fromEntries(["name","mobile","date","guests","type","shift"].map(k => [k, form.elements[k].value.trim()]));
+  //   const e = {};
+  //   if (!/^[A-Za-z][A-Za-z .'-]{1,59}$/.test(v.name)) e.name = "Enter your full name (letters only).";
+  //   if (!/^[6-9]\d{9}$/.test(v.mobile.replace(/[\s-]/g,""))) e.mobile = "Enter a valid 10-digit mobile number.";
+  //   if (!v.date || v.date < dt.min) e.date = "Choose today or a future date.";
+  //   if (!(+v.guests >= 1 && +v.guests <= 20)) e.guests = "Enter 1 to 20 guests.";
+  //   if (!v.type) e.type = "Select a safari type.";
+  //   if (!v.shift) e.shift = "Select a shift.";
+  //   $$(".err").forEach(s => s.textContent = e[s.dataset.for] || "");
+  //   return Object.keys(e).length ? null : v;
+  // };  
   const val = () => {
     const v = Object.fromEntries(["name","mobile","date","guests","type","shift"].map(k => [k, form.elements[k].value.trim()]));
     const e = {};
-    if (!/^[A-Za-z][A-Za-z .'-]{1,59}$/.test(v.name)) e.name = "Enter your full name (letters only).";
-    if (!/^[6-9]\d{9}$/.test(v.mobile.replace(/[\s-]/g,""))) e.mobile = "Enter a valid 10-digit mobile number.";
+    if (!/^\p{L}[\p{L} .'-]{1,59}$/u.test(v.name)) e.name = "Enter your full name (letters only).";
+    const mob = v.mobile.replace(/[\s-]/g,"");
+    if (!(/^[6-9]\d{9}$/.test(mob) || /^\+\d{8,15}$/.test(mob))) e.mobile = "Enter a valid 10-digit Indian mobile number, or a number with country code (e.g. +44...).";
     if (!v.date || v.date < dt.min) e.date = "Choose today or a future date.";
     if (!(+v.guests >= 1 && +v.guests <= 20)) e.guests = "Enter 1 to 20 guests.";
     if (!v.type) e.type = "Select a safari type.";
     if (!v.shift) e.shift = "Select a shift.";
+    if (v.type === "Gypsy" && +v.guests > 6) e.guests = "A Gypsy seats up to 6 guests. Please choose Canter or reduce the guests.";
     $$(".err").forEach(s => s.textContent = e[s.dataset.for] || "");
     return Object.keys(e).length ? null : v;
   };
+
   const msg = v => `Hello, I want to enquire about a Ranthambore safari.\n\nName: ${v.name}\nSafari Date: ${v.date}\nGuests: ${v.guests}\nSafari Type: ${v.type}\nPreferred Shift: ${v.shift}\n\nWebsite: ${SITE_CONFIG.brandName}`;
   $("#wa-send").addEventListener("click", () => { const v = val(); if (v) open(waLink(msg(v)), "_blank", "noopener"); });
 
@@ -117,14 +132,14 @@ if (form) {
 }
 
 // Hotels list + details
-const hl = $("#hotels"), hd = $("#hd");
-if (hl) {
-  $("#hmode").textContent = HOTEL_MODE === "PLACEHOLDER" ? "These are sample/placeholder listings. No hotel partnerships, prices or availability are shown or implied." : "";
-  hl.innerHTML = ["3-Star Hotels","4-Star Hotels","5-Star Hotels"].map(c => `<h2>${c}</h2>` + HOTELS.filter(h => h.stars === c).map(h => `<!-- HOTEL PLACEHOLDER: replace this card only after verified hotel information is available. -->
-<article class="card hcard"><div class="ph" role="img" aria-label="Image placeholder for ${esc(h.name)}"></div><div><h3>${esc(h.name)}</h3><p class="muted">${esc(h.stars)} · ${esc(h.location)}</p><p>${esc(h.short)}</p><p><strong>Facilities:</strong> ${esc(h.facilities)}</p><div class="cta"><a class="btn btn-a" href="/hotel-details.html?id=${encodeURIComponent(h.id)}">More Information</a><a class="btn btn-l dk" target="_blank" rel="noopener" href="${waLink("Hello, I want to enquire about: " + h.name)}">Enquire on WhatsApp</a></div></div></article>`).join("")).join("");
-}
-if (hd) {
-  const h = HOTELS.find(x => x.id === new URLSearchParams(location.search).get("id"));
-  hd.insertAdjacentHTML("beforeend", !h ? "<h1>Hotel not found</h1><p>Please choose a hotel from the catalogue.</p>" :
-    `<h1>${esc(h.name)}</h1>${HOTEL_MODE==="PLACEHOLDER"?'<p class="warn">Sample listing — details will be updated after verified hotel information is available.</p>':""}<p class="muted">${esc(h.stars)} · ${esc(h.location)}</p><h2>Overview</h2><p>${esc(h.overview)}</p><h2>Facilities</h2><p>${esc(h.facilities)}</p><h2>Room information</h2><p>${esc(h.rooms)}</p><h2>Nearby information</h2><p>${esc(h.nearby)}</p><a class="btn btn-a" target="_blank" rel="noopener" href="${waLink("Hello, I want to enquire about: " + h.name)}">Enquire on WhatsApp</a>`);
-}
+// const hl = $("#hotels"), hd = $("#hd");
+// if (hl) {
+//   $("#hmode").textContent = HOTEL_MODE === "PLACEHOLDER" ? "These are sample/placeholder listings. No hotel partnerships, prices or availability are shown or implied." : "";
+//   hl.innerHTML = ["3-Star Hotels","4-Star Hotels","5-Star Hotels"].map(c => `<h2>${c}</h2>` + HOTELS.filter(h => h.stars === c).map(h => `<!-- HOTEL PLACEHOLDER: replace this card only after verified hotel information is available. -->
+// <article class="card hcard"><div class="ph" role="img" aria-label="Image placeholder for ${esc(h.name)}"></div><div><h3>${esc(h.name)}</h3><p class="muted">${esc(h.stars)} · ${esc(h.location)}</p><p>${esc(h.short)}</p><p><strong>Facilities:</strong> ${esc(h.facilities)}</p><div class="cta"><a class="btn btn-a" href="/hotel-details.html?id=${encodeURIComponent(h.id)}">More Information</a><a class="btn btn-l dk" target="_blank" rel="noopener" href="${waLink("Hello, I want to enquire about: " + h.name)}">Enquire on WhatsApp</a></div></div></article>`).join("")).join("");
+// }
+// if (hd) {
+//   const h = HOTELS.find(x => x.id === new URLSearchParams(location.search).get("id"));
+//   hd.insertAdjacentHTML("beforeend", !h ? "<h1>Hotel not found</h1><p>Please choose a hotel from the catalogue.</p>" :
+//     `<h1>${esc(h.name)}</h1>${HOTEL_MODE==="PLACEHOLDER"?'<p class="warn">Sample listing — details will be updated after verified hotel information is available.</p>':""}<p class="muted">${esc(h.stars)} · ${esc(h.location)}</p><h2>Overview</h2><p>${esc(h.overview)}</p><h2>Facilities</h2><p>${esc(h.facilities)}</p><h2>Room information</h2><p>${esc(h.rooms)}</p><h2>Nearby information</h2><p>${esc(h.nearby)}</p><a class="btn btn-a" target="_blank" rel="noopener" href="${waLink("Hello, I want to enquire about: " + h.name)}">Enquire on WhatsApp</a>`);
+// }
