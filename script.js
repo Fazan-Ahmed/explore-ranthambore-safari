@@ -4,24 +4,15 @@
 const SITE_CONFIG = {
   brandName: "Explore Ranthambore Safari",
   domain: "https://exploreranthamboresafari.in/",
-  primaryPhone: "8619152322",
-  secondaryPhone: "7665151817",
+  primaryPhone: "+918619152322",
+  secondaryPhone: "+917665151817",
   whatsappUrl: "https://wa.me/message/SUCM2DBCG7WPD1"
 };
-/* EMAILJS: create a free EmailJS account, then replace the three values below.
-   Set the receiving email inside the EmailJS template (not here). Never put private keys here — only the PUBLIC key.
-   Template variables used: name, mobile, date, guests, type, shift. */
+
+/* EMAILJS: only the PUBLIC key goes here. Set the receiving email inside the EmailJS template.
+   Template variables used: name, mobile, date, guests, nationality, type, shift. */
 const EMAILJS = { serviceId: "service_j7eskfh", templateId: "template_w6ebk2b", publicKey: "z3fhOAPPiiDGlRKJD" };
-/* HOTEL LAUNCH CONTROL
-   Change to "LIVE" only after verified hotel information is added.
-   While using placeholder/sample hotel content, do not use the hotel pages as Google Ads landing pages. */
-// const HOTEL_MODE = "PLACEHOLDER";
-/* HOTEL DATA: HOTEL PLACEHOLDER — replace each entry only after verified hotel information is available. */
-// const HOTELS = [
-  // {id:"sample-3star",name:"Partner Hotel – 3 Star (Placeholder)",stars:"3-Star Hotels",location:"Ranthambore / Sawai Madhopur (to be updated)",facilities:"To be updated after verification",short:"Sample Hotel Listing – Replace With Verified Hotel",overview:"Overview will be added after verified hotel information is available.",rooms:"Room information to be updated.",nearby:"Nearby information to be updated."},
-  // {id:"sample-4star",name:"Partner Hotel – 4 Star (Placeholder)",stars:"4-Star Hotels",location:"Ranthambore / Sawai Madhopur (to be updated)",facilities:"To be updated after verification",short:"Sample Hotel Listing – Replace With Verified Hotel",overview:"Overview will be added after verified hotel information is available.",rooms:"Room information to be updated.",nearby:"Nearby information to be updated."},
-  // {id:"sample-5star",name:"Partner Hotel – 5 Star (Placeholder)",stars:"5-Star Hotels",location:"Ranthambore / Sawai Madhopur (to be updated)",facilities:"To be updated after verification",short:"Sample Hotel Listing – Replace With Verified Hotel",overview:"Overview will be added after verified hotel information is available.",rooms:"Room information to be updated.",nearby:"Nearby information to be updated."}
-// ];
+
 const $ = (s, r=document) => r.querySelector(s), $$ = (s, r=document) => [...r.querySelectorAll(s)];
 const esc = t => String(t).replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 const waLink = text => SITE_CONFIG.whatsappUrl + (text ? "?text=" + encodeURIComponent(text) : "");
@@ -34,27 +25,41 @@ const y = $("#year"); if (y) y.textContent = new Date().getFullYear();
 
 // Mobile menu
 const burger = $(".burger"), nav = $("#nav");
-burger.addEventListener("click", () => { const o = nav.classList.toggle("open"); burger.setAttribute("aria-expanded", o); burger.setAttribute("aria-label", o ? "Close menu" : "Open menu"); });
-$$("#nav a").forEach(a => a.addEventListener("click", () => { nav.classList.remove("open"); burger.setAttribute("aria-expanded", "false"); }));
+if (burger && nav) {
+  burger.addEventListener("click", () => {
+    const o = nav.classList.toggle("open");
+    burger.setAttribute("aria-expanded", o);
+    burger.setAttribute("aria-label", o ? "Close menu" : "Open menu");
+  });
+  $$("#nav a").forEach(a => a.addEventListener("click", () => {
+    nav.classList.remove("open");
+    burger.setAttribute("aria-expanded", "false");
+  }));
+}
 
 // Back to top
 const topBtn = $("#top");
-addEventListener("scroll", () => { topBtn.hidden = scrollY < 500; }, {passive:true});
-topBtn.addEventListener("click", () => scrollTo({top:0}));
+if (topBtn) {
+  addEventListener("scroll", () => { topBtn.hidden = scrollY < 500; }, {passive:true});
+  topBtn.addEventListener("click", () => scrollTo({top:0}));
+}
 
 // FAQ: keep one open at a time
-$$(".faq details").forEach(d => d.addEventListener("toggle", () => { if (d.open) $$(".faq details").forEach(o => { if (o !== d) o.open = false; }); }));
+$$(".faq details").forEach(d => d.addEventListener("toggle", () => {
+  if (d.open) $$(".faq details").forEach(o => { if (o !== d) o.open = false; });
+}));
 
 // Booking form
 const form = $("#enq");
 if (form) {
-  const dt = $("#date"), today = new Date(); today.setMinutes(today.getMinutes() - today.getTimezoneOffset());
+  const dt = $("#date"), today = new Date();
+  today.setMinutes(today.getMinutes() - today.getTimezoneOffset());
   dt.min = today.toISOString().slice(0,10);
   const status = $("#status");
   const successMsg = $("#successMsg"), errorMsg = $("#errorMsg");
   const submitBtn = form.querySelector('button[type="submit"]');
 
-  // Success / error cards (HTML mein hidden rehte hain)
+  // Success / error cards (hidden in HTML by default)
   const showCard = card => {
     form.style.display = "none";
     successMsg.hidden = true; errorMsg.hidden = true;
@@ -70,26 +75,17 @@ if (form) {
   const again = $("#again");
   if (again) again.addEventListener("click", showForm);
 
-  // const val = () => {
-  //   const v = Object.fromEntries(["name","mobile","date","guests","type","shift"].map(k => [k, form.elements[k].value.trim()]));
-  //   const e = {};
-  //   if (!/^[A-Za-z][A-Za-z .'-]{1,59}$/.test(v.name)) e.name = "Enter your full name (letters only).";
-  //   if (!/^[6-9]\d{9}$/.test(v.mobile.replace(/[\s-]/g,""))) e.mobile = "Enter a valid 10-digit mobile number.";
-  //   if (!v.date || v.date < dt.min) e.date = "Choose today or a future date.";
-  //   if (!(+v.guests >= 1 && +v.guests <= 20)) e.guests = "Enter 1 to 20 guests.";
-  //   if (!v.type) e.type = "Select a safari type.";
-  //   if (!v.shift) e.shift = "Select a shift.";
-  //   $$(".err").forEach(s => s.textContent = e[s.dataset.for] || "");
-  //   return Object.keys(e).length ? null : v;
-  // };  
+  const FIELDS = ["name","mobile","date","guests","nationality","type","shift"];
+
   const val = () => {
-    const v = Object.fromEntries(["name","mobile","date","guests","type","shift"].map(k => [k, form.elements[k].value.trim()]));
+    const v = Object.fromEntries(FIELDS.map(k => [k, form.elements[k].value.trim()]));
     const e = {};
     if (!/^\p{L}[\p{L} .'-]{1,59}$/u.test(v.name)) e.name = "Enter your full name (letters only).";
     const mob = v.mobile.replace(/[\s-]/g,"");
     if (!(/^[6-9]\d{9}$/.test(mob) || /^\+\d{8,15}$/.test(mob))) e.mobile = "Enter a valid 10-digit Indian mobile number, or a number with country code (e.g. +44...).";
     if (!v.date || v.date < dt.min) e.date = "Choose today or a future date.";
     if (!(+v.guests >= 1 && +v.guests <= 20)) e.guests = "Enter 1 to 20 guests.";
+    if (!v.nationality) e.nationality = "Select nationality (Indian or Foreign national).";
     if (!v.type) e.type = "Select a safari type.";
     if (!v.shift) e.shift = "Select a shift.";
     if (v.type === "Gypsy" && +v.guests > 6) e.guests = "A Gypsy seats up to 6 guests. Please choose Canter or reduce the guests.";
@@ -97,15 +93,19 @@ if (form) {
     return Object.keys(e).length ? null : v;
   };
 
-  const msg = v => `Hello, I want to enquire about a Ranthambore safari.\n\nName: ${v.name}\nSafari Date: ${v.date}\nGuests: ${v.guests}\nSafari Type: ${v.type}\nPreferred Shift: ${v.shift}\n\nWebsite: ${SITE_CONFIG.brandName}`;
-  $("#wa-send").addEventListener("click", () => { const v = val(); if (v) open(waLink(msg(v)), "_blank", "noopener"); });
+  const msg = v => `Hello, I want to enquire about a Ranthambore safari.\n\nName: ${v.name}\nSafari Date: ${v.date}\nGuests: ${v.guests}\nNationality: ${v.nationality}\nSafari Type: ${v.type}\nPreferred Shift: ${v.shift}\n\nWebsite: ${SITE_CONFIG.brandName}`;
+
+  $("#wa-send").addEventListener("click", () => {
+    const v = val();
+    if (v) open(waLink(msg(v)), "_blank", "noopener");
+  });
 
   form.addEventListener("submit", async ev => {
     ev.preventDefault();
     const v = val();
     if (!v) { status.className = "bad"; status.textContent = "Please fix the highlighted fields."; return; }
 
-    // EmailJS settings sahi nahi hain to bhi guest ko error card dikhao
+    // If EmailJS settings are not valid, still show the error card to the visitor
     const ready = ![EMAILJS.serviceId, EMAILJS.templateId, EMAILJS.publicKey].some(x => x.startsWith("EMAILJS_"));
     if (!ready) { showCard(errorMsg); return; }
 
@@ -115,7 +115,12 @@ if (form) {
       const r = await fetch("https://api.emailjs.com/api/v1.0/email/send", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ service_id: EMAILJS.serviceId, template_id: EMAILJS.templateId, user_id: EMAILJS.publicKey, template_params: v })
+        body: JSON.stringify({
+          service_id: EMAILJS.serviceId,
+          template_id: EMAILJS.templateId,
+          user_id: EMAILJS.publicKey,
+          template_params: v
+        })
       });
       if (!r.ok) throw new Error("EmailJS status " + r.status);
       form.reset();
