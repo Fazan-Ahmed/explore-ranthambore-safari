@@ -26,6 +26,18 @@
   <meta property="og:image:alt" content="Explore Ranthambore Safari - independent safari booking assistance">
   <meta name="twitter:card" content="summary_large_image">
 
+
+
+  <!-- font familu -->
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Lato:wght@400;500;600;700&family=Montserrat:wght@500;600;700&display=swap"
+    rel="stylesheet">
+
+
   <link rel="icon" href="/images/favicon.png">
   <link rel="stylesheet" href="/style.css">
   <script src="/script.js" defer></script>
@@ -39,6 +51,63 @@
 
     gtag('config', 'G-7NSGEC7127');
   </script>
+
+  <!-- Styles for the National Park / History section -->
+  <style>
+    .park-sec h2.park-title {
+      margin: 0 0 18px;
+    }
+
+    .park-sec h2.park-title::after {
+      content: "";
+      display: block;
+      width: 100px;
+      height: 3px;
+      background: #d1246a;
+      margin-top: 12px;
+    }
+
+    .park-intro {
+      line-height: 1.8;
+      margin: 0 0 32px;
+    }
+
+    .park-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      align-items: center;
+    }
+
+    .park-img img {
+      display: block;
+      width: 100%;
+      height: auto;
+      border-radius: 10px;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, .15);
+    }
+
+    .park-text h3 {
+      margin: 0 0 16px;
+      font-size: 1.8rem;
+    }
+
+    .park-text p {
+      line-height: 1.75;
+      margin: 0 0 14px;
+    }
+
+    @media (max-width: 800px) {
+      .park-row {
+        grid-template-columns: 1fr;
+        gap: 22px;
+      }
+
+      .park-text h3 {
+        font-size: 1.5rem;
+      }
+    }
+  </style>
 
 </head>
 
@@ -71,10 +140,14 @@
 
     <section class="hero">
       <div class="wrap">
-        <h1>Independent Ranthambore Safari Booking Assistance</h1>
+        <h1> Ranthambore Safari Booking 2026-27</h1>
         <p class="hero-text"><strong>We are an independent private agent. We are not the Forest Department or any
             government booking portal.</strong> We help you request safari tickets on your behalf.</p>
-        <p>Plan your Ranthambore safari with independent booking assistance for Gypsy and Canter safari enquiries.</p>
+
+        <p>Explore Ranthambore Safari is an independent private tour agency based in Ranthambore, helping nature and
+          history lovers enjoy a well-organized trip. Along with safari booking assistance for Gypsy and Canter, we
+          arrange guided Ranthambore Fort excursions and curated museum visits. Enquire about available options for
+          your preferred date and travel plans.</p>
         <div class="cta"><a class="btn btn-a" href="/safari-booking.html#enquiry">Send Safari Enquiry</a><a
             class="btn btn-l" data-wa href="https://wa.me/message/SUCM2DBCG7WPD1" target="_blank"
             rel="noopener">WhatsApp Us</a><a class="btn btn-l" data-tel="primary" href="tel:+918619152322">Call Now</a>
@@ -101,89 +174,61 @@
         </div>
       </div>
     </section>
-
     <section class="sec">
       <div class="wrap">
-        <h2>Safari Options</h2>
+        <h2>Our Services</h2>
         <div class="grid3">
-          <!-- Gypsy Safari Card -->
-          <article class="pkg-card" id="gypsy">
-            <div class="pkg-icon" aria-hidden="true">&#128665;</div>
-            <h3 class="pkg-name">Jeep / Gypsy Safari</h3>
-            <div class="pkg-type">Up to 6 Persons &bull; Maximum 6 persons &amp; 2 children (1 to 5 yrs) allowed</div>
-
-            <div class="pkg-price">&#8377;2,250 <span>/ Seat (Indian)</span></div>
-            <div class="pkg-price" style="font-size: 1.15rem; margin-top: 4px;">&#8377;5,500 <span>/ Seat
-                (Foreigner)</span></div>
-
-            <div class="pkg-per">per person, all-inclusive (ticket, our assistance charge &amp; taxes)</div>
-
-            <ul class="pkg-features">
-              <li><strong>Seating:</strong> Open 6-seater Gypsy</li>
-              <li><strong>Zones:</strong> 1 to 10 (Zones 1-5 closed on Wednesday; Zones 6-10 closed on Tuesday)</li>
-              <li><strong>Monsoon:</strong> During July, Aug &amp; Sept only Zones 6 to 10 remain open</li>
-              <li><strong>Timings:</strong> Morning 7:00 AM &ndash; 10:30 AM | Evening 2:00 PM &ndash; 5:30 PM (varies
-                seasonally)</li>
-              <li><strong>Included in the ticket price:</strong> Park entry permit, seat in the Forest Department Gypsy,
-                driver, guide fee &amp; applicable taxes. Vehicle, driver and guide are allotted by the park
-                authorities.</li>
-
-              <li><strong>Pick &amp; Drop:</strong> Not included from hotels</li>
-              <li><strong>Document Requirement:</strong> valid Govt ID mandatory for permit issuance</li>
-            </ul>
-
-            <a class="btn btn-pkg btn-pkg-outline" href="/safari-booking.html#enquiry">Send Gypsy Safari Enquiry</a>
-          </article>
-
-          <!-- Canter Safari Card -->
-          <article class="pkg-card" id="canter">
-            <div class="pkg-icon" aria-hidden="true">&#128652;</div>
-            <h3 class="pkg-name">Canter Safari</h3>
-            <div class="pkg-type">Up to 20 seats &bull; Suitable for groups & families</div>
-
-            <div class="pkg-price">&#8377;1,290 <span>/ Seat (Indian)</span></div>
-            <div class="pkg-price" style="font-size: 1.15rem; margin-top: 4px;">&#8377;5,000 <span>/ Seat
-                (Foreigner)</span></div>
-
-            <div class="pkg-per">per person, all-inclusive (ticket, our assistance charge &amp; taxes)</div>
-
-            <ul class="pkg-features">
-              <li><strong>Seating:</strong> Open 20-seater Canter</li>
-              <li><strong>Zones:</strong> 1 to 10 (Zones 1-5 closed on Wednesday; Zones 6-10 closed on Tuesday)</li>
-              <li><strong>Monsoon:</strong> During July, Aug &amp; Sept only Zones 6 to 10 remain open</li>
-              <li><strong>Timings:</strong> Morning 7:00 AM &ndash; 10:30 AM | Evening 2:00 PM &ndash; 5:30 PM (varies
-                seasonally)</li>
-              <li><strong>Included in the ticket price:</strong> Park entry permit, seat in the Forest Department
-                Canter, driver, guide fee &amp; applicable taxes. Vehicle, driver and guide are allotted by the park
-                authorities.</li>
-
-              <li><strong>Pick &amp; Drop:</strong> Not included from hotels</li>
-              <li><strong>Document Requirement:</strong> valid Govt ID mandatory for permit issuance</li>
-            </ul>
-
-            <a class="btn btn-pkg btn-pkg-outline" href="/safari-booking.html#enquiry">Send Canter Safari Enquiry</a>
-          </article>
-
-          <!-- Booking Assistance Card -->
           <article class="card">
-            <h3>Booking Assistance</h3>
-            <p>Share your travel dates, nationality and preferred safari vehicle. We help you request safari tickets
-              through the Rajasthan Forest Department's booking system. Permits, vehicles and zones are allotted by the
-              authorities, not by us.</p>
-            <p class="muted">All bookings are subject to Forest Department quota and availability.</p>
+            <h3>Safari booking assistance</h3>
+            <p>We help you request Gypsy and Canter safari tickets through the Rajasthan Forest Department's booking
+              system.</p>
+          </article>
+          <article class="card">
+            <h3>Fort and museum visits</h3>
+            <p>Guided Ranthambore Fort visits and curated museum visits arranged for you.</p>
+          </article>
+          <article class="card">
+            <h3>Hotels and tour itineraries</h3>
+            <p>Hotel bookings and private tour itineraries arranged with third-party hotels and providers on your
+              behalf.</p>
           </article>
         </div>
+      </div>
+    </section>
 
-        <!-- Transparent, Policy-Compliant Disclaimer -->
-        <p class="muted">
-          All rates are per person. Price shown is the total per seat and includes the Forest Department ticket charge,
-          our booking assistance charge and applicable taxes. Rates differ for Indian and Foreign nationals as set by
-          the park authorities. We confirm the exact total in writing before payment, and no other charge is added after
-          you confirm.
-        </p>
+    <!-- ================= RANTHAMBORE NATIONAL PARK / HISTORY SECTION (START) ================= -->
+    <section class="sec park-sec" id="national-park">
+      <div class="wrap">
+
+        <h2 class="park-title">Ranthambore National Park</h2>
+        <p class="park-intro"><strong>Ranthambore National Park</strong> is one of Rajasthan's best-known wildlife
+          destinations, loved for its varied landscape and rich wildlife. Close to Sawai Madhopur, the park shelters
+          Bengal tigers, leopards, sloth bears, deer, crocodiles and many kinds of birds. Dense forest, quiet lakes,
+          open grasslands and the historic <strong>Ranthambore Fort</strong> together make it a special place for
+          nature and wildlife lovers.</p>
+
+        <div class="park-row">
+          <figure class="park-img" style="margin:0;">
+            <img src="/images/ranthambore-tiger.webp" alt="Bengal tiger standing in Ranthambore National Park"
+              width="1200" height="800" loading="lazy" decoding="async">
+          </figure>
+
+          <div class="park-text">
+            <h3>History of Ranthambore</h3>
+            <p>Ranthambore was declared a <strong>National Park in 1980</strong>. It is part of the Ranthambore Tiger
+              Reserve, one of the first reserves brought under <strong>Project Tiger in 1973</strong>. The park spreads
+              over roughly <strong>392 square kilometres</strong> near Sawai Madhopur, with dry deciduous forest,
+              grasslands, lakes and wetlands that support many forms of wildlife.</p>
+            <p>Rocky hills, old ruins and heritage structures surround the park, which gives it a very different
+              character from most other reserves. Today Ranthambore plays an important role in tiger conservation and
+              gives <strong>Bengal tigers, leopards, sloth bears, deer, crocodiles</strong> and many birds a protected
+              home.</p>
+          </div>
+        </div>
 
       </div>
     </section>
+    <!-- ================= RANTHAMBORE NATIONAL PARK / HISTORY SECTION (END) ================= -->
 
     <!-- ================= IMAGE GALLERY SECTION (START) ================= -->
     <section class="sec">
@@ -239,20 +284,6 @@
           its official booking system, and we assist you with the booking on your behalf. An enquiry is not an instant
           confirmation. Payment is requested only after the total price and booking conditions are communicated to you.
           Our assistance charge is already included in the price shown.</p>
-      </div>
-    </section>
-
-    <section class="sec">
-      <div class="wrap narrow">
-        <h2>Cancellation and refund at a glance</h2>
-        <ul>
-          <li>30 days or more before the safari date: 75% refund of the eligible amount.</li>
-          <li>Between 72 hours and 30 days before: 50% refund.</li>
-          <li>Within 72 hours: no refund.</li>
-          <li>If we cannot confirm your booking after receiving payment, you get a full refund of the amount paid.</li>
-        </ul>
-        <p>Some government or payment charges may be non-refundable. Read the full <a href="/refund-policy.html">Refund
-            Policy</a> and <a href="/terms-and-conditions.html">Terms &amp; Conditions</a> before you pay.</p>
       </div>
     </section>
 
@@ -351,45 +382,25 @@
             <p>We review your details, check the available options and contact you by phone or WhatsApp. Submitting an
               enquiry is not a booking confirmation.</p>
           </details>
-          <details>
-            <summary>What is the cancellation/refund process?</summary>
-            <p>Refund depends on how early you cancel: 75% of the eligible amount if 30 days or more before the safari
-              date, 50% if between 72 hours and 30 days, and no refund within 72 hours. Some charges may be
-              non-refundable. If we cannot confirm a booking after you have paid, the full amount is refunded. Please
-              read our <a href="/refund-policy.html">Refund Policy</a> before paying.</p>
-          </details>
         </div>
       </div>
     </section>
 
-    <section class="sec alt">
-      <div class="wrap">
-        <h2>Plan Your Ranthambore Safari</h2>
-        <p>Phone: <a data-tel="primary" href="tel:+918619152322">+91-8619152322</a> &nbsp; Phone: <a
-            data-tel="secondary" href="tel:+917665151817">+91-7665151817</a></p>
-        <div class="cta"><a class="btn btn-a" href="/safari-booking.html#enquiry">Send Enquiry</a><a class="btn btn-l"
-            data-wa href="https://wa.me/message/SUCM2DBCG7WPD1" target="_blank" rel="noopener">WhatsApp Us</a><a
-            class="btn btn-l" data-tel="primary" href="tel:+918619152322">Call Now</a></div>
-      </div>
-    </section>
 
   </main>
 
   <footer class="ftr">
     <div class="wrap fgrid">
       <div>
-        <h2>Explore Ranthambore Safari</h2>
-        <p>Independent Safari Booking Assistance</p>
-        <p>Not affiliated with the Forest Department or Government of Rajasthan.</p>
-        <p>Service Area: Ranthambore / Sawai Madhopur, Rajasthan, India</p>
+
+        <p><strong>Explore Ranthambore Safari</strong> independent private tour agency based in Ranthambore, dedicated
+          to providing complete, well-organized tour experiences for nature and history enthusiasts. We specialize in
+          comprehensive trip planning, offering safari booking assistance, guided Ranthambore Fort excursions and
+          curated museum visits.</p>
         <p>
           <strong>Operated by:</strong>
-          <!-- <span>Fazan Ahmed</span> -->
           <span>Fazan Ahmed (Owner)</span>
         </p>
-        <p><strong>Udyam Registration No.:</strong> UDYAM-RJ-29-0044982</p>
-        <p>Independent booking agent. We do not own or operate safari vehicles.</p>
-
       </div>
       <div id="contact">
         <h2>Contact</h2>
@@ -398,6 +409,7 @@
         <p>Email: <a href="mailto:exploreranthamboresafari@gmail.com">exploreranthamboresafari@gmail.com</a></p>
         <p>Address: House No.17, Khardi Mohalla, Sawai Madhopur, Dist. Sawai Madhopur, Rajasthan &ndash;
           322021</p>
+        <p><strong>Udyam Registration No.:</strong> UDYAM-RJ-29-0044982</p>
       </div>
       <div>
         <h2>Pages</h2>
@@ -406,15 +418,19 @@
         <p><a href="/about.html">About</a></p>
         <p><a href="/privacy-policy.html">Privacy Policy</a></p>
         <p><a href="/terms-and-conditions.html">Terms &amp; Conditions</a></p>
-        <p><a href="/refund-policy.html">Refund Policy</a></p>
+        <p><a href="/terms-and-conditions.html">Cancellation and Refund Policy</a></p>
       </div>
     </div>
-    <p class="wrap copy">© <span id="year">2026</span> Explore Ranthambore Safari. All Rights Reserved
-      <br>
-      <strong>Disclaimer:</strong> This is an independent safari booking assistance website and is not
-      affiliated with, operated by, or an official website of the Rajasthan Forest Department or the Government of
-      Rajasthan.
-    </p>
+
+    <!-- Disclaimer -->
+
+    <div class="wrap ftr-disclaimer">
+      <p><strong>Disclaimer:</strong> Explore Ranthambore Safari is an independent private tour operator and travel
+        assistance agency. We provide private tour packages, itinerary design, hotel bookings, and safari booking
+        assistance. We are not affiliated with, authorized by, or an official portal of the Forest Department or any
+        government entity.
+      </p>
+    </div>
   </footer>
 
   <div class="float">
@@ -422,6 +438,13 @@
     <a class="fab fab-wa" data-wa href="https://wa.me/message/SUCM2DBCG7WPD1" target="_blank" rel="noopener"
       aria-label="WhatsApp us">WhatsApp</a>
     <button class="fab fab-top" id="top" aria-label="Back to top" hidden>Top</button>
+  </div>
+
+  <!-- Copyright: page ka bilkul last element -->
+  <div class="ftr-copy">
+    <div class="wrap">
+      <p>&copy; <span id="year">2026</span> Explore Ranthambore Safari. All Rights Reserved.</p>
+    </div>
   </div>
 </body>
 
