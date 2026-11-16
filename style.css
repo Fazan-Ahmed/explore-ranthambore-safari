@@ -954,3 +954,49 @@ input, select, textarea {
 .ftr-copy p {
   margin: 0;
 }
+
+
+/* loop */
+
+.top-ticker {
+  background: #1b4d2b;          /* apni theme ke hisab se badal lo */
+  color: #fff;
+  overflow: hidden;             /* bahar ka text hide */
+  white-space: nowrap;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 8px 0;
+  position: relative;
+  z-index: 1001;                /* navbar ke upar rahe */
+}
+
+.ticker-track {
+  display: inline-flex;
+  width: max-content;
+  animation: tickerScroll 25s linear infinite;
+}
+
+.ticker-item {
+  padding: 0 60px;              /* dono copies ke beech gap */
+}
+
+/* mouse le jane par ruk jaye */
+.top-ticker:hover .ticker-track {
+  animation-play-state: paused;
+}
+
+@keyframes tickerScroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-70%); }   /* ek copy ki width, isliye loop smooth */
+}
+
+/* jinko motion pasand nahi unke liye */
+@media (prefers-reduced-motion: reduce) {
+  .ticker-track { animation: none; }
+}
+
+/* mobile par thoda tez */
+@media (max-width: 600px) {
+  .top-ticker { font-size: 12px; }
+  .ticker-track { animation-duration: 20s; }
+}
