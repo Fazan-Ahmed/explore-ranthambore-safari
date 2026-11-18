@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://exploreranthamboresafari.in/sitemap.xml
+Sitemap: https://www.exploreranthamboresafari.in/sitemap.xml

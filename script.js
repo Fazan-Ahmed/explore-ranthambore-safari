@@ -3,7 +3,7 @@
    7665151817 is a phone number only — it is NOT WhatsApp. */
 const SITE_CONFIG = {
   brandName: "Explore Ranthambore Safari",
-  domain: "https://exploreranthamboresafari.in/",
+  domain: "https://www.exploreranthamboresafari.in/",
   primaryPhone: "+918619152322",
   secondaryPhone: "+917665151817",
   whatsappUrl: "https://wa.me/message/SUCM2DBCG7WPD1"
